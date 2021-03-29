@@ -39,8 +39,7 @@ class EmployeesController < ApplicationController
 
   def update
     if @employee.update(employee_params)
-      flash[:notice] = "Employee #{@employee.nombres} was successfully updated."
-      redirect_to employees_path
+      redirect_to employees_path, notice: "Employee #{@employee.nombres} was successfully updated."
     else
       render 'edit'
     end
@@ -48,8 +47,7 @@ class EmployeesController < ApplicationController
 
   def destroy
     if @employee.destroy
-      flash[:notice] = "Employee #{@employee.nombres} was successfully destroyed."
-      redirect_to employees_path
+      redirect_to employees_path, notice: "Employee #{@employee.nombres} was successfully destroyed."
     end
   end
 
