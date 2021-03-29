@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render 'shared/errors', obj: @employee %>
+      <%= form_with(model: @employee, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :nombres, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :nombres, class: "form-control shadow rounded", placeholder: "Enter your name" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :apellidos, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :apellidos, class: "form-control shadow rounded", placeholder: "Enter your lastname (both)" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :telefono, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.telephone_field :telefono, class: "form-control shadow rounded", placeholder: "Enter your phonenumber" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :email, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.email_field :email, class: "form-control shadow rounded", placeholder: "Enter a valid email" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :cargo, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :cargo, class: "form-control shadow rounded", placeholder: "Enter your job title" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :salario, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.text_field :salario, class: "form-control shadow rounded", placeholder: "Enter your salary" %>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :departamento, class: "col-2 col-form-label text-light" %>
+          <div class="col-10">
+            <%= f.select :departamento, @options %>
+          </div>
+        </div>
+
+        <div class="form-group row justify-content-center">
+          <%= f.submit "Send Employee", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="mb-3">
+      <%= link_to '[ Cancel and return to employee listing ]', employees_path, class: "text-info" %>
+    </div>
+  </div>
+</div>

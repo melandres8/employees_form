@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-primary text-center">Listing Employees</h1>
+
+<br>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">Nombres: </th>
+      <th scope="col">Apellidos: </th>
+      <th scope="col">Email: </th>
+      <th scope="col">Teléfono: </th>
+      <th scope="col">Cargo: </th>
+      <th scope="col">Salario: </th>
+      <th scope="col">Departamento: </th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td scope="row"><%= employee.nombres %></td>
+        <td><%= employee.apellidos %></td>
+        <td><%= employee.email %></td>
+        <td><%= number_to_phone(employee.telefono, area_code: true) %></td>
+        <td><%= employee.cargo %></td>
+        <td><%= number_to_currency(employee.salario) %></td>
+        <td><%= employee.departamento %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee), class: "btn btn-sm btn-outline-warning" %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="container">
+  <div class="row">
+    <div class="col btn-group text-center">
+      <%= link_to 'New Movie', new_employee_path, class: "btn btn-primary" %>
+      <%=link_to 'Export to CSV', employees_path(format: 'csv'), class: "btn btn-outline-primary"%>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<%= form_tag import_employees_path, multipart: true do%>
+  <%= file_field_tag :file, accept: 'text/csv', class: "btn btn-secondary", required: true %>
+  <%= submit_tag 'Import', class: "btn btn-outline-secondary" %>
+<% end %>
+<br>
